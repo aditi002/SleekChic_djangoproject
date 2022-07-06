@@ -38,3 +38,174 @@
 </head>
 
 <body>
+
+    <!-- Start Main Top -->
+	<header class="main-header">
+		<!-- Start Navigation -->
+		<nav class="navbar navbar-expand-lg navbar-dark bg-light navbar-default bootsnav">
+            <div class="container">
+                <!-- Start Header Navigation -->
+                <div class="navbar-header col-lg-3 col-md-5 col-sm-12">
+                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-menu" aria-controls="navbars-rs-food" aria-expanded="false" aria-label="Toggle navigation">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                    <a class="navbar-brand" href="/"><img src="{% static 'images/Sleek-chic__2_-removebg-preview.png' %}" width="250 px"/></a>
+                </div>
+                <!-- End Header Navigation -->
+                <!-- Collect the nav links, forms, and other content for toggling -->
+                <div class="collapse navbar-collapse bg-light col-lg-9 col-md-7" id="navbar-menu">
+                    <div class="col-lg-6">
+                        <form class="form-inline" action="/search/" method="GET">
+                            <div class="input-group" style="width: 100%;">
+                                <input class="form-control" placeholder="Search for Prodcts" name="search" type="text">
+                                <div class="input-group-append">
+                                    <button class="btn text-light hvr-hover" type="submit"><i class="fas fa-search"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                    <div class="col-lg-6 d-flex justify-content-center">
+                        <ul class="nav navbar-nav ml-auto" data-in="fadeInDown" data-out="fadeOutUp">
+                            {% if user.id %}
+                            <li class="dropdown">
+                                <a href="/account" class="nav-link dropdown-toggle" data-toggle="dropdown">
+                                    <i class="fas fa-login " style="font-size: 18px;"></i>
+                                    <span>Login</span>
+                                    
+                                    <img src="{{ customer.profile_pic.url }}" class="avatar">
+                                    <span class="pl-2">{{user.first_name}} {{user.last_name}}</span>
+                                    <i class="fas fa-angle-down"></i>
+                                </a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-bold bg-light" href="/account/#profile">
+                                            <i class="fas fa-user-circle pr-2" style="font-size: 18px;"></i> Profile
+                                        </a>
+                                    </li>
+                                    
+                                    
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-bold " href="/logout">
+                                            <i class="fas fa-sign-out-alt pr-2" style="font-size: 18px;"></i> Logout
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                            <li class="dropdown">
+                                <a href="/cart" class="nav-link dropdown-toggle " data-toggle="dropdown">
+                                    <i class="fas fa-shopping-cart " style="font-size: 18px;"></i>
+                                    <span>Cart ({{qty}})</span>
+                                    <i class="fas fa-angle-down "></i>
+                                </a>
+                                <ul class="dropdown-menu cart-item" role="menu">
+                                    {% if carts %}
+                                    {% for cart in carts %}
+                                    <li class="nav-item">
+                                        <a href="/productdetail/{{cart.product_id}}" class="nav-link">
+                                            {{forloop.counter}}.
+                                            <span class="font-weight-bold">{{cart.product.product_name}}</span> <br>
+                                            {{cart.qty}}x - ₹ {{cart.amount|floatformat:2|intcomma}}
+                                        </a>
+                                    </li>
+                                    {% endfor %}
+                                    <li class="nav-item">
+                                        <a href="/cart" class="nav-link">
+                                            Total : ₹ {{total|floatformat:2|intcomma}}
+                                        </a>
+                                    </li>
+                                    {% else %}
+                                    <li class="nav-item">
+                                        <a class="nav-link font-weight-bold">
+                                            Cart is Empty.
+                                        </a>
+                                    </li>
+                                    {% endif %}
+                                </ul>
+                            </li>
+                            {% else %}
+                            <li class="nav-item">
+                                <a class="nav-link" href="/login">
+                                    <i class="fas fa-sign-in-alt pr-2" style="font-size: 18px;"></i>Login
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="/signup">
+                                    <i class="fas fa-user-plus pr-2" style="font-size: 18px;"></i>SignUp
+                                </a>
+                            </li>
+                            {% endif %}
+                            
+                        </ul>
+                    </div>
+                </div>
+			</div>
+		</nav>
+		<!-- End Navigation -->
+	</header>
+     <!-- End Main Top -->
+
+    {% block body %}
+    {% endblock %}
+
+	<!-- Start Footer  -->
+	<footer>
+        <div class="footer-main">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-widget">
+                            <h4>About Sleek Chic</h4>
+                            <p>
+                                Determined to provide an easy online shopping experience with fast and efficient service, Sleek chic offers users with best and most original quality products as it believes in customer satisfaction. 
+                                An e-commerce site where users can search for required products with instant delivery making it hassle-free and less time-consuming.
+                                Sleek chic has an easy user interface and a simple yet modish site design. 
+                            </p>
+                            <ul>
+                                <li><a href="#"><i class="fab fa-facebook" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-twitter" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-linkedin" aria-hidden="true"></i></a></li>
+                                <li><a href="#"><i class="fab fa-google-plus" aria-hidden="true"></i></a></li>
+                                
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4 col-md-12 col-sm-12">
+                        <div class="footer-link-contact">
+                            <h4>Contact Us</h4>
+                            <ul>
+                                <li>
+                                    <p><i class="fas fa-map-marker-alt"></i>Address: Kathmandu, Nepal
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-phone-square"></i>Phone: (+977) 987 020 003</a></p>
+                                </li>
+                                <li>
+                                    <p><i class="fas fa-envelope"></i>Email: sleek_infos@gmail.com</a></p>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+	</footer>
+	<!-- End Footer  -->
+
+	
+
+	<a href="#" id="back-to-top" title="Back to top" style="display: none;">&uarr;</a>
+
+	<!-- ALL JS FILES -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.6.0/umd/popper.min.js"></script>
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+	<!-- ALL PLUGINS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/superslides/0.6.2/jquery.superslides.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.nicescroll/3.7.6/jquery.nicescroll.min.js"></script>
+  <script src="{% static 'js/custom.js' %}"></script>
+  <script src="{% static 'js/bootsnav.js' %}"></script>
+</body>
+
+</html>
+
