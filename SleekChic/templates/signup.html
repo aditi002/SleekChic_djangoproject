@@ -1,0 +1,32 @@
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Create A New Account{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 my-4 py-4 bg-light shadow rounded">
+            <div class="title-all text-center">
+                <h1>Create An Account</h1>
+            </div>
+            <div>
+                <form id="formRegister" action="/signup/" method="POST">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{message}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <script>
+                                    $('.alert').alert()
+                                </script>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% csrf_token %}
+                    <div class="form-row">
