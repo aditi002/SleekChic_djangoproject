@@ -21,4 +21,4 @@ Checkout | Lifestyle Electronics
                         {% for cart in carts %}
                         <div class="media mb-2 border-bottom">
                             <div class="media-body"> <a href="/productdetail/{{cart.product_id}}"> {{cart.product.product_name}}</a>
-                                <div class="small text-muted">Price: ₹ {{cart.price|floatformat:2|intcomma}} <span class="mx-2">|</span> Qty: {{cart.qty}} <span class="mx-2">|</span> Subtotal: ₹ {{cart.amount|floatformat:2|intcomma}}</div>
+                                <div class="small text-muted">Price: rs {{cart.price|floatformat:2|intcomma}} <span class="mx-2">|</span> Qty: {{cart.qty}} <span class="mx-2">|</span> Subtotal: ₹ {{cart.amount|floatformat:2|intcomma}}</div>
