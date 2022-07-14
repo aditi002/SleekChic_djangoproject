@@ -1,0 +1,24 @@
+
+{% extends 'base.html' %}
+
+{% load static %}
+{% load humanize %}
+
+{% block title %}
+Checkout | Lifestyle Electronics
+{% endblock %}
+
+{% block body %}
+<div class="cart-box-main">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12 col-lg-12 mb-3">
+                <div class="odr-box">
+                    <div class="title-left">
+                        <h3>Shopping Cart</h3>
+                    </div>
+                    <div class="rounded p-2 bg-light">
+                        {% for cart in carts %}
+                        <div class="media mb-2 border-bottom">
+                            <div class="media-body"> <a href="/productdetail/{{cart.product_id}}"> {{cart.product.product_name}}</a>
+                                <div class="small text-muted">Price: ₹ {{cart.price|floatformat:2|intcomma}} <span class="mx-2">|</span> Qty: {{cart.qty}} <span class="mx-2">|</span> Subtotal: ₹ {{cart.amount|floatformat:2|intcomma}}</div>
