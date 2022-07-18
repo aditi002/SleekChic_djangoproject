@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Update Profile{% endblock %}
+
+{% block body %}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3"></div>
+        <div class="col-md-6 my-4 py-4 bg-light shadow rounded">
+            <div class="title-all text-center">
+                <h1>Update Profile</h1>
+            </div>
+            <div>
+                <form id="formRegister" action="/account/updateprofile/" method="POST" enctype="multipart/form-data">
+                    {% if messages %}
+                        {% for message in messages %}
+                            <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                {{message}}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <script>
+                                    $('.alert').alert()
+                                </script>
+                            </div>
+                        {% endfor %}
+                    {% endif %}
+                    {% csrf_token %}
